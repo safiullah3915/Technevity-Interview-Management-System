@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<HrPortal3.Models.Panel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Panels</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PanelName)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("Create","Panels",null,Context.Request.Scheme)','Add Panel')" class="btn btn-success text-white">Add Panel</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PanelName)
+                </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("Edit","Panels",new { id = item.PanelId },Context.Request.Scheme)','Edit Panel')" class="btn btn-success text-white">Edit</a>
+
+
+                    <a onclick="showInPopup('@Url.Action("Delete","Panels",new { id = item.PanelId },Context.Request.Scheme)','Delete Panel')" class="btn btn-danger text-white">Delete</a>
+                    
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<User>
+
+@{
+    ViewData["Title"] = "ListUSers";
+}
+
+<table class="table">
+    <thead class="table-active">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SimPassword)
+            </th>
+            <th>
+                <a class="btn btn-success text-white" href="#" data-target="#form-modal" onclick="showRegistrationPopup()">
+                  Add Panel
+                   
+                    </a>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SimPassword)
+                </td>
+                <td></td>
+               
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model HrPortal3.Models.Panel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <!-- Existing form fields for Panel creation -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="PanelName" class="control-label"></label>
+                <input asp-for="PanelName" class="form-control" />
+                <span asp-validation-for="PanelName" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="form-group button-create ">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

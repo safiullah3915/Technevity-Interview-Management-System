@@ -1,0 +1,16 @@
+﻿@model HrPortal3.Models.Panel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = null;
+}
+
+<div>
+
+    <h4>Are You Sure, you want to delete this?</h4>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PanelId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+          </form>
+</div>

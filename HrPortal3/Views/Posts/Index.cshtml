@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<HrPortal3.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Posts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PostName)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("Create","Posts",null,Context.Request.Scheme)','Add Post')" class="btn btn-success text-white">Add Post</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostName)
+                </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("Edit","Posts",new { id = item.PostId },Context.Request.Scheme)','Edit Post')" class="btn btn-success text-white">Edit</a>
+                    <a onclick="showInPopup('@Url.Action("Delete","Posts",new { id = item.PostId },Context.Request.Scheme)','Delete Post')" class="btn btn-danger text-white">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

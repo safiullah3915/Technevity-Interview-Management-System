@@ -1,0 +1,29 @@
+﻿
+
+@model HrPortal3.Models.Panel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PanelId" />
+            <div class="form-group mb-3">
+                <label asp-for="PanelName" class="control-label"></label>
+                <input asp-for="PanelName" class="form-control" />
+                <span asp-validation-for="PanelName" class="text-danger"></span>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group button-create ">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

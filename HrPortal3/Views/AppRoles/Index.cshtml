@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Application Roles";
+}
+
+<h1>View Roles</h1>
+
+<table class="table">
+    <thead class="table-active">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.Id)
+            </th>
+       
+            <th>
+                @Html.DisplayNameFor(model=>model.Name)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("Create","AppRoles",null,Context.Request.Scheme)','New Role')" class="btn btn-success text-white">Add Role</a>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem=>item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem=>item.Name)
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

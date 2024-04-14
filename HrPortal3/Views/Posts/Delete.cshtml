@@ -1,0 +1,16 @@
+﻿@model HrPortal3.Models.Post
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = null;
+}
+
+<div>
+
+    <h4>Are you sure you want to delete this?</h4>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PostId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>

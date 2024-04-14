@@ -1,0 +1,126 @@
+﻿
+@model HrPortal3.Models.IntervieweeCreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form enctype="multipart/form-data" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Contact" class="control-label"></label>
+                        <input asp-for="Contact" class="form-control" />
+                        <span asp-validation-for="Contact" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="InterviewDate" class="control-label"></label>
+                        <input asp-for="InterviewDate" class="form-control" />
+                        <span asp-validation-for="InterviewDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="PostId" class="control-label">Post</label>
+                    <!-- Use ViewBag.Roles for the dropdown -->
+                    <select asp-for="PostId" asp-items="@ViewBag.Posts" class="form-control">
+                        <option value="">-- Select Post --</option>
+                    </select>
+                    <span asp-validation-for="PostId" class="text-danger"></span>
+                </div>
+
+                <!-- Modify the User dropdown to use the js-example-basic-multiple class -->
+               @* <div class="col-md-6">
+                    <label asp-for="UserId" class="control-label">Panel Member</label>
+                    <!-- Use ViewBag.Users for the dropdown -->
+                    <select asp-for="UserId" asp-items="@ViewBag.Users" class="form-control js-example-basic-multiple" multiple>
+                        <option value="">-- Select User --</option>
+                    </select>
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>*@
+                <div class="col-md-6">
+                    <label asp-for="UserId" class="control-label">Panel Member</label>
+                    <!-- Use ViewBag.Users for the dropdown -->
+                    <select asp-for="UserId" asp-items="@ViewBag.Users" class="form-control js-example-basic-multiple" multiple>
+                    </select>
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+
+                
+            </div>
+            <div class="col-md-13">
+                <div class="form-group">
+                    <label asp-for="Resume" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Resume" class="form-control custom-file-input" id="resumeInput" />
+                        <label class="custom-file-label" for="resumeInput">Choose file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group button-create ">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+
+           @* @section Scripts{
+                <script>
+                    $(document).ready(function () {
+                        // Initialize the multi-select dropdown for the "User" field
+                        $('.js-example-basic-multiple').select2();
+                       
+                    });
+                </script>
+            }*@
+           @* <script>
+                $(document).ready(function () {
+
+                    // Initialize the multi-select dropdown for the "User" field
+                    $('.js-example-basic-multiple').select2();
+
+                    // ...
+                    // Your other JavaScript code
+                    // ...
+                    $('.custom-file-input').on("change", function () {
+                        var filename = $(this).val().split("\\").pop();
+                        $(this).next('.custom-file-label').html(filename);
+                    });
+                });
+            </script>*@
+            <script>
+                $(document).ready(function () {
+                    // Initialize the multi-select dropdown for the "User" field
+                    $('.js-example-basic-multiple').select2({
+                        placeholder: '-- Select Panel Member --',
+                        allowClear: true // Allows clearing the selection when the default text is shown
+                    });
+
+                    // Set the default text when the page loads
+                    $('.js-example-basic-multiple').val('').trigger('change');
+
+                    // Your existing custom-file-input change event handler
+                    $('.custom-file-input').on("change", function () {
+                        var filename = $(this).val().split("\\").pop();
+                        $(this).next('.custom-file-label').html(filename);
+                    });
+                });
+            </script>
+
+        </form>
+    </div>
+</div>
+
+
+

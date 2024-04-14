@@ -1,0 +1,98 @@
+﻿@model IEnumerable<HrPortal3.Models.IntervieweeIndexModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1></h1>
+
+<table class="table">
+    <thead class="table-active">
+        <tr >
+            <th >
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResumeFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterviewDate)
+            </th>
+            <th>
+                PanelName
+            </th>
+            <th>
+                PostName
+            </th>
+           
+            <th class="col-3">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <a onclick="showInPopup('@Url.Action("Create","Interviewees",null,Context.Request.Scheme)','New Intreview')" class="btn btn-success text-white">Add Interview</a>
+
+                    }
+                }
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+                <td>
+                    <a href="/Interviewees/DownloadFile/?filePath=@item.ResumeFile">
+                        @Html.DisplayFor(modelItem => item.ResumeFile)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterviewDate)
+                </td>
+                <td>
+                    @item.UserName
+                </td>
+                <td >
+                    @item.PostName
+                </td>
+
+                <td class="col-3">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                          if (User.IsInRole("Admin"))
+                        {
+                            <a onclick="showInPopup('@Url.Action("Edit","Interviewees",new { id = item.IntervieweeId },Context.Request.Scheme)','Edit Interview')" class="btn btn-success text-white">Edit</a>
+                            <a onclick="showInPopup('@Url.Action("Delete","Interviewees",new { id = item.IntervieweeId },Context.Request.Scheme)','Delete Interview')" class="btn btn-danger text-white">Delete</a>
+                           
+                        }
+
+                    }
+                   
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Interviewer"))
+                        {
+                            
+                            <a asp-action="Index" asp-controller="Feedbacks" class="btn btn-info text-white">Add Feeback</a>
+                        }
+
+                    }
+                   
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
